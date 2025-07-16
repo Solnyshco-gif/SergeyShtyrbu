@@ -1,23 +1,18 @@
 package ru.SergeyShtyrbu.tgBot.entity;
-
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "categories")
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
     @Column(nullable = false, length = 50, unique = true)
-    @NotBlank(message = "Name must not be blank")
-    @Size(max = 50, message = "Name must not exceed 50 characters")
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "parent_id")
     private Category parent;
 

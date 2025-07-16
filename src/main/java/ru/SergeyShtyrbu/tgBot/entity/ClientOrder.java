@@ -1,29 +1,22 @@
 package ru.SergeyShtyrbu.tgBot.entity;
-
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PositiveOrZero;
 
 @Entity
 @Table(name = "client_orders")
 public class ClientOrder {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @NotNull(message = "Client must not be null")
+    @ManyToOne
     private Client client;
 
     @Column(nullable = false)
-    @NotNull(message = "Status must not be null")
     private Integer status;
 
     @Column(nullable = false)
-    @NotNull(message = "Total must not be null")
-    @PositiveOrZero(message = "Total must be non-negative")
     private Double total;
+
 
     public Long getId() {
         return id;
